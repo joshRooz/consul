@@ -179,6 +179,7 @@ export default class DataSource extends Component {
       }
     }
   }
+
   @action
   async invalidate() {
     this.source.readyState = 2;
@@ -186,9 +187,9 @@ export default class DataSource extends Component {
     schedule('afterRender', () => {
       // TODO: Support lazy data-sources by keeping a reference to $el
       runInDebug(_ =>
-        console.error(
+        console.debug(
           `Invalidation is only supported for non-lazy data sources. If you want to use this you should fixup support for lazy data sources`
-        )
+        ) // eslint-disable-line no-console
       );
       this.connect([]);
     });
